@@ -38,14 +38,13 @@
 (defn decode-string
   [s]
   "Decodes a string `s` encoded in the format k[encoded_string]"
-  (let []
-    (loop [stack []
-          remaining s]
-     (if (empty? remaining)
-       (repeat-string (get (first stack) :n) (get (first stack) :s))
-       (let [opening (re-find #"^\d+\[[a-zA-Z]*" remaining)]
-         (if opening
-           (recur (add-to-stack stack opening)
-                  (subs remaining (count opening)))
-           (recur (consolidate-stack stack)
-                  (subs remaining 1))))))))
+  (loop [stack []
+         remaining s]
+    (if (empty? remaining)
+      (repeat-string (get (first stack) :n) (get (first stack) :s))
+      (let [opening (re-find #"^\d+\[[a-zA-Z]*" remaining)]
+        (if opening
+          (recur (add-to-stack stack opening)
+                 (subs remaining (count opening)))
+          (recur (consolidate-stack stack)
+                 (subs remaining 1)))))))
