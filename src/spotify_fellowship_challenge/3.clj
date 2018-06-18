@@ -4,10 +4,11 @@
 ;; - considers the last denomination in the vector, then
 ;; - counts up from 0, denoting the number of this denomination of coins which
 ;;   will fit in `amount`, and
-;; - collects the result of recursing with the remaining `amount` and `denominations`
+;; - collects the result of recursing with the remaining `amount` and
+;;   `denominations`
 ;;
-;; `0` is returned if there are no denominations of coins remaining to make up the
-;; amount. `1` is returned if `amount` is `0`
+;; `0` is returned if there are no denominations of coins remaining to make up
+;; the amount. `1` is returned if `amount` is `0`
 
 (defn change-possibilities
   [amount denominations]
